@@ -1,2 +1,2 @@
-# kodimon
-Simple Pokemno Battle Game.
+# Kodimon
+Simple Pokemon Battle Game.
