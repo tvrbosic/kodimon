@@ -13,12 +13,10 @@ export default function Home() {
 
   return (
     <Center height="100%" flexDirection="column">
-      <Container>
-        <Banner />
-        <Center>
-          <Button onClick={handleClick}>New Game</Button>
-        </Center>
-      </Container>
+      <Banner />
+      <Center>
+        <Button onClick={handleClick}>New Game</Button>
+      </Center>
     </Center>
   );
 }

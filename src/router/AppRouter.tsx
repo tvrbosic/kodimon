@@ -2,7 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import Home from '../screens/home/Home';
 import Layout from '../components/Layout';
-import Game from '../screens/Game';
+import Game from '../screens/game/Game';
 
 function AppRouter() {
   let element = useRoutes([
