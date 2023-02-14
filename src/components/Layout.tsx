@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 function Layout() {
   return (
-    <Box minH="100vh" px="20" py="5">
+    <Box height="100vh" px="20" py="5">
       <Outlet />
     </Box>
   );
