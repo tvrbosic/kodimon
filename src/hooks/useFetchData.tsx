@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { IFetchDataProps, IHttpError } from '../ts/httpInterfaces';
+import { IHttpError } from '../ts/httpInterfaces';
 
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-export const useFetchData = ({ path }: IFetchDataProps) => {
+export const useFetchData = (path: string) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [error, setError] = useState<IHttpError | null>(null);
 
   useEffect(() => {

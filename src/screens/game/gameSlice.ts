@@ -6,6 +6,7 @@ import type { RootState } from '../../app/store';
 
 // Define the initial state using IGameState
 const initialState: IGameState = {
+  pokemonCount: 0,
   pokemons: [],
   activePokemon: undefined,
   battleStatus: 'pending',
@@ -17,7 +18,11 @@ export const gameSlice = createSlice({
   name: 'game',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    setPokemonCount: (state, action: PayloadAction<number>) => {
+      state.pokemonCount = action.payload;
+    },
+  },
 });
 
 //export const { ...gameSlice.reducers } = gameSlice.actions;

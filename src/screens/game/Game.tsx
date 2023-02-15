@@ -1,10 +1,14 @@
 import { Center, VStack, Flex, Box } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useFetchData } from '../../hooks/useFetchData';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 
 export default function Game() {
+  const { isLoading, data, error } = useFetchData('/pokemon');
+
   return (
     <Center height="100%" flexDirection="column">
       <VStack width="100%">
