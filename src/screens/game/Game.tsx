@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFetchData } from '../../hooks/useFetchData';
 import Banner from '../../components/Banner';
 import AppMenu from '../../components/AppMenu';
+import Logs from './components/Logs';
 
 export default function Game() {
   const { isLoading, data, error } = useFetchData('/pokemon');
@@ -19,10 +20,14 @@ export default function Game() {
         </Flex>
         <Flex width="100%">
           <Box flex="1">
-            <AppMenu />
+            <Flex flexDirection="column" justifyContent="end" height="100%">
+              <AppMenu />
+            </Flex>
           </Box>
           <Spacer />
-          <Box flex="2">Box 2</Box>
+          <Box flex="2">
+            <Logs />
+          </Box>
         </Flex>
       </VStack>
     </Center>

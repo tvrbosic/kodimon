@@ -7,16 +7,7 @@ interface IProps extends FlexProps {
 export default function ThemeContainer({ children, ...rest }: IProps) {
   console.log(rest);
   return (
-    <Flex
-      width="100%"
-      height="100%"
-      bg="lightYellow"
-      border="4px"
-      borderRadius="16"
-      borderColor="yellow"
-      p="6"
-      {...rest}
-    >
+    <Flex bg="lightYellow" border="4px" borderRadius="16" borderColor="yellow" {...rest}>
       {children}
     </Flex>
   );
