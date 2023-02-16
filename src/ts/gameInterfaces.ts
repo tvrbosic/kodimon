@@ -1,7 +1,4 @@
-// API Pokemon data
-interface IPokemon {
-  someKey: string;
-}
+import { IPokemonDataUrl, IPokemon } from './apiInterfaces';
 
 interface ILogEntry {
   text: string;
@@ -9,8 +6,9 @@ interface ILogEntry {
 
 // Game state slice
 export interface IGameState {
-  pokemonCount: number;
-  pokemons: IPokemon[];
+  pokemonDataUrls: IPokemonDataUrl[];
+  battlingPokemonUrls: string[];
+  battlingPokemons: IPokemon[];
   activePokemon: number | undefined;
   battleStatus: 'pending' | 'ongoing' | 'finished';
   log: ILogEntry[];

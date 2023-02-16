@@ -6,5 +6,6 @@ export interface IHttpError {
 export interface IUseFetchData<Type> {
   isLoading: boolean;
   data: Type | null;
+  isError: boolean;
   error: IHttpError | null;
 }

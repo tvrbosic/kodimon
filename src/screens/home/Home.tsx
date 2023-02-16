@@ -4,32 +4,35 @@ import { useNavigate } from 'react-router-dom';
 
 import { useFetchData } from '../../hooks/useFetchData';
 import { useAppDispatch } from '../../app/hooks';
-import { gameSlice } from '../game/gameSlice';
-import { IAllPokemon } from '../../ts/pokemonApiInterfaces';
-import { IUseFetchData } from '../../ts/httpInterfaces';
+import { setPokemonDataUrls, setBattlingPokemonUrls } from '../game/gameSlice';
+import { IPokemonDataUrls, IPokemonDataUrl } from '../../ts/apiInterfaces';
+import { randomInteger } from '../../utils/utility';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
+
+const pokemonSpeciesCount = process.env.REACT_APP_POKEMON_COUNT;
 
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {
-    isLoading,
-    data = { count: 0 },
-    error,
-  }: IUseFetchData<IAllPokemon> = useFetchData('/pokemon');
+  const { isLoading, data, isError, error } = useFetchData<IPokemonDataUrls>(
+    `/pokemon?limit=${pokemonSpeciesCount}`
+  );
 
+  // After
   useEffect(() => {
     if (!isLoading && data) {
       console.log(data);
-      dispatch(gameSlice.actions.setPokemonCount(data.count));
+      const battlingPokemonUrls: string[] = [];
+      // Get two random pokemon URL's and set to state
+      battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
+      battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
+      dispatch(setPokemonDataUrls(data.results));
+      dispatch(setBattlingPokemonUrls(battlingPokemonUrls));
     }
-  }, [isLoading, data]);
+  }, [isLoading, data, dispatch]);
 
   const handleClick = () => {
-    // Check if count 0 and display message
-    // If count > 0
-    // Calculate random two numbers and fetch those two pokemon
     navigate('/game');
   };
 
@@ -37,7 +40,9 @@ export default function Home() {
     <Center height="100%" flexDirection="column">
       <Banner />
       <Center>
-        <Button onClick={handleClick}>New Game</Button>
+        <Button onClick={handleClick} isLoading={isLoading}>
+          New Game
+        </Button>
       </Center>
     </Center>
   );

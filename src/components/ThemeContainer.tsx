@@ -5,7 +5,6 @@ interface IProps extends FlexProps {
 }
 
 export default function ThemeContainer({ children, ...rest }: IProps) {
-  console.log(rest);
   return (
     <Flex bg="lightYellow" border="4px" borderRadius="16" borderColor="yellow" {...rest}>
       {children}

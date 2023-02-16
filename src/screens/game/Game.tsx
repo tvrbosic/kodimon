@@ -1,14 +1,17 @@
 import { Center, VStack, Flex, Box, Spacer } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { useFetchData } from '../../hooks/useFetchData';
-import Banner from '../../components/Banner';
+import { useAppSelector } from '../../app/hooks';
+import { useFetchBatchData } from '../../hooks/useFetchBatchData';
+import { IPokemon } from '../../ts/apiInterfaces';
 import AppMenu from '../../components/AppMenu';
 import Logs from './components/Logs';
 
 export default function Game() {
-  const { isLoading, data, error } = useFetchData('/pokemon');
+  const battlingPokemonUrls = useAppSelector((state) => state.game.battlingPokemonUrls);
+  const { isLoading, data, isError, error } = useFetchBatchData<IPokemon>(battlingPokemonUrls);
+  console.log(data);
+  // TODO: set battlingPokemon in use effect
 
   return (
     <Center height="100%" flexDirection="column">
