@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { IHttpError } from '../ts/httpInterfaces';
+import { IHttpError } from '../ts/interfaces';
 
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;

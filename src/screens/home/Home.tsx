@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useFetchData } from '../../hooks/useFetchData';
 import { useAppDispatch } from '../../app/hooks';
 import { setPokemonDataUrls, setBattlingPokemonUrls } from '../game/gameSlice';
-import { IPokemonDataUrls, IPokemonDataUrl } from '../../ts/apiInterfaces';
+import { IPokemonUrls } from '../../ts/interfaces';
 import { randomInteger } from '../../utils/utility';
+
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 
@@ -15,7 +16,7 @@ const pokemonSpeciesCount = process.env.REACT_APP_POKEMON_COUNT;
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, data, isError, error } = useFetchData<IPokemonDataUrls>(
+  const { isLoading, data, isError, error } = useFetchData<IPokemonUrls>(
     `/pokemon?limit=${pokemonSpeciesCount}`
   );
 

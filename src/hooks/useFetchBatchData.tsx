@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import { IHttpError } from '../ts/httpInterfaces';
+import { IHttpError } from '../ts/interfaces';
 
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-export function useFetchBatchData<Type extends { data?: any }>(endpoints: string[]) {
+export function useFetchBatchData<Type>(endpoints: string[]) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Type[] | null>(null);
   const [isError, setIsError] = useState(false);
@@ -15,11 +15,12 @@ export function useFetchBatchData<Type extends { data?: any }>(endpoints: string
   useEffect(() => {
     setIsLoading(true);
     axios
-      .all<Type | null>(endpoints.map((endpoint) => axios.get(endpoint)))
-      .then((data) => {
+      .all(endpoints.map((endpoint) => axios.get(endpoint)))
+      .then((response) => {
+        console.log(response);
         const fetchedData: Type[] = [];
-        data.forEach((element) => {
-          fetchedData.push(element!.data);
+        response.forEach((element) => {
+          fetchedData.push(element.data);
         });
         setData(fetchedData);
       })
