@@ -4,11 +4,13 @@ import { Button as CButton, ButtonProps } from '@chakra-ui/react';
 interface IProps extends ButtonProps {
   children: React.ReactNode;
 }
+
 export default function Button({ children, ...rest }: IProps) {
   return (
     <CButton
       as="button"
       height="10"
+      width="100%"
       color="white"
       bg="blue"
       px="12"

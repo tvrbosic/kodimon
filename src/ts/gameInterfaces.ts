@@ -1,4 +1,4 @@
-// Server Pokemon data
+// API Pokemon data
 interface IPokemon {
   someKey: string;
 }

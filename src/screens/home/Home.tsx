@@ -27,6 +27,9 @@ export default function Home() {
   }, [isLoading, data]);
 
   const handleClick = () => {
+    // Check if count 0 and display message
+    // If count > 0
+    // Calculate random two numbers and fetch those two pokemon
     navigate('/game');
   };
 
