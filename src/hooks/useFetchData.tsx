@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { IHttpError } from '../ts/interfaces';
+import { IHttpError } from '../ts/definitions';
 
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -20,12 +20,9 @@ export function useFetchData<Type>(path: string) {
       .then((request) => setData(request.data))
       .catch((error) => {
         if (axios.isAxiosError(error)) {
-          console.log(error.status);
-          console.error(error.response);
           setIsError(true);
           setError({ status: error.status, message: error.message });
         } else {
-          console.error(error);
           setIsError(true);
           setError({ status: 0, message: 'Unknown error occurred!' });
         }

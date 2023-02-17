@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
-import { IHttpError } from '../ts/interfaces';
+import { IHttpError } from '../ts/definitions';
 
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -17,7 +17,6 @@ export function useFetchBatchData<Type>(endpoints: string[]) {
     axios
       .all(endpoints.map((endpoint) => axios.get(endpoint)))
       .then((response) => {
-        console.log(response);
         const fetchedData: Type[] = [];
         response.forEach((element) => {
           fetchedData.push(element.data);

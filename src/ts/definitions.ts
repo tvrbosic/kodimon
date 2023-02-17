@@ -23,14 +23,18 @@ export interface IPokemonStat {
 
 export interface IPokemon {
   name: string;
+  remainingHp?: number;
   stats: IPokemonStat[];
   sprites: {
     front_default: string;
   };
 }
 
-export interface ILogEntry {
-  text: string;
+export type TBattlingPokemonIndex = 0 | 1;
+
+export interface IProcessAttackDamage {
+  damage: number;
+  defendingPokemon: TBattlingPokemonIndex;
 }
 
 // Redux state slice interface
@@ -38,8 +42,8 @@ export interface IGameState {
   pokemonDataUrls: IPokemonUrl[];
   battlingPokemonUrls: string[];
   battlingPokemons: IPokemon[];
-  activePokemon: number | undefined;
-  battleStatus: 'pending' | 'ongoing' | 'finished';
-  log: ILogEntry[];
+  activePokemon: TBattlingPokemonIndex;
+  log: string[];
   missChance: number;
+  battleStatus: 'pending' | 'ongoing' | 'finished';
 }

@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useFetchData } from '../../hooks/useFetchData';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch } from '../../state/hooks';
 import { setPokemonDataUrls, setBattlingPokemonUrls } from '../game/gameSlice';
-import { IPokemonUrls } from '../../ts/interfaces';
+import { IPokemonUrls } from '../../ts/definitions';
 import { randomInteger } from '../../utils/utility';
 
 import Banner from '../../components/Banner';
@@ -23,7 +23,6 @@ export default function Home() {
   // After
   useEffect(() => {
     if (!isLoading && data) {
-      console.log(data);
       const battlingPokemonUrls: string[] = [];
       // Get two random pokemon URL's and set to state
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);

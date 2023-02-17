@@ -2,8 +2,10 @@ import { Flex, VStack } from '@chakra-ui/react';
 
 import { Text } from '@chakra-ui/react';
 import ThemeContainer from '../../../components/ThemeContainer';
+import { useAppSelector } from '../../../state/hooks';
 
 export default function Logs() {
+  const logEntries = useAppSelector((state) => state.game.log);
   return (
     <Flex flexDirection="column" height="100%">
       <Text fontWeight="bold" ml="2" mb="2">
@@ -18,9 +20,9 @@ export default function Logs() {
         flexDirection="column"
       >
         <VStack spacing="1" alignItems="start">
-          <Text fontWeight="bold">Test</Text>
-          <Text fontWeight="bold">Test</Text>
-          <Text fontWeight="bold">Test</Text>
+          {logEntries.map((entry) => (
+            <Text fontWeight="bold">{entry}</Text>
+          ))}
         </VStack>
       </ThemeContainer>
     </Flex>
