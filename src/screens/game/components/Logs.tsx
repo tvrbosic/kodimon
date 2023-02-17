@@ -20,8 +20,10 @@ export default function Logs() {
         flexDirection="column"
       >
         <VStack spacing="1" alignItems="start">
-          {logEntries.map((entry) => (
-            <Text fontWeight="bold">{entry}</Text>
+          {logEntries.map((entry, index) => (
+            <Text key={index} fontWeight="bold">
+              {entry}
+            </Text>
           ))}
         </VStack>
       </ThemeContainer>
