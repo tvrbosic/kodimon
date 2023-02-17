@@ -6,7 +6,7 @@ import { capitalize } from '../../../utils/utility';
 import ThemeContainer from '../../../components/ThemeContainer';
 
 interface IHpBarProps {
-  remainingHp: number;
+  remainingPercentage: number;
 }
 
 interface IStatsProps {
@@ -17,31 +17,41 @@ interface IPokemonProps {
   pokemonData: IPokemon;
 }
 
-const HpBar = ({ remainingHp }: IHpBarProps) => {
-  console.log(remainingHp);
-  const h = 4,
-    br = 'full';
+const HpBar = ({ remainingPercentage }: IHpBarProps) => {
+  const transition = 'all 300ms ease-in-out';
+  let color = 'green',
+    fillColor = 'lightGreen';
+  if (remainingPercentage > 29 && remainingPercentage < 50) {
+    color = 'orange';
+    fillColor = 'lightOrange';
+  } else if (remainingPercentage < 30) {
+    color = 'red';
+    fillColor = 'lightRed';
+  }
 
   return (
     <Flex flexDirection="column" alignItems="center" mb="4">
-      <Text color="green" fontWeight="bold">{`${remainingHp} %`}</Text>
-      <Box
+      <Text
+        color={color}
+        fontWeight="bold"
+        transition={transition}
+      >{`${remainingPercentage} %`}</Text>
+      <Flex
         width="100%"
-        height={h}
-        position="relative"
+        height="4"
         border="2px"
-        borderColor="green"
-        borderRadius={br}
+        borderColor={color}
+        borderRadius="full"
         overflow="hidden"
+        transition={transition}
       >
         <Box
-          height={h}
-          width={`${remainingHp}%`}
-          position="absolute"
-          bg="lightGreen"
-          zIndex="-1"
+          height="100%"
+          width={`${remainingPercentage}%`}
+          bg={fillColor}
+          transition={transition}
         ></Box>
-      </Box>
+      </Flex>
     </Flex>
   );
 };
@@ -68,10 +78,9 @@ const Stats = ({ stats }: IStatsProps) => {
 };
 
 export default function Pokemon({ pokemonData }: IPokemonProps) {
-  //console.log(pokemonData);
   return (
     <Box>
-      <HpBar remainingHp={100} />
+      <HpBar remainingPercentage={60} />
       <Flex flexDirection="column" alignItems="center" mb="2">
         <Text fontWeight="bold" ml="2" mb="2">
           {capitalize(pokemonData.name)}

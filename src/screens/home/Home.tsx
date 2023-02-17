@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <Center height="100%" flexDirection="column">
+    <Center height="100vh" flexDirection="column">
       <Banner />
       <Center>
         <Button onClick={handleClick} isLoading={isLoading}>
