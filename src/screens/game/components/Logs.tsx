@@ -11,14 +11,7 @@ export default function Logs() {
       <Text fontWeight="bold" ml="2" mb="2">
         Logs
       </Text>
-      <ThemeContainer
-        width="100%"
-        height="100%"
-        minHeight="25vh"
-        px="3"
-        py="5"
-        flexDirection="column"
-      >
+      <ThemeContainer width="100%" height="25vh" px="3" py="5" flexDirection="column">
         <Box
           maxHeight="22vh"
           overflow="auto"
