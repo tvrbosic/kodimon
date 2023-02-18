@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useFetchData } from '../../hooks/useFetchData';
-import { useAppDispatch } from '../../state/hooks';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import {
   setPokemonDataUrls,
   setBattlingPokemonUrls,
@@ -19,6 +19,7 @@ import Button from '../../components/Button';
 const pokemonSpeciesCount = process.env.REACT_APP_POKEMON_COUNT;
 
 export default function Home() {
+  const battlingPokemonUrls = useAppSelector((state) => state.game.battlingPokemonUrls);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isLoading, data, isError, error } = useFetchData<IPokemonUrls>(
@@ -32,7 +33,7 @@ export default function Home() {
 
   // Set Pokemon URL's to state after data fetch
   useEffect(() => {
-    if (!isLoading && data) {
+    if (!isLoading && !isError && data) {
       const battlingPokemonUrls: string[] = [];
       // Get two random pokemon URL's which will be used on Game page to fetch Pokemon data
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
@@ -42,18 +43,21 @@ export default function Home() {
       // Set all Pokemon URL's to state which will be used in AppMenu component
       dispatch(setPokemonDataUrls(data.results));
     }
-  }, [isLoading, data, dispatch]);
+  }, [isLoading, data, isError, dispatch]);
 
   const handleClick = () => {
     dispatch(setBattleStatus('ongoing'));
     navigate('/game');
   };
 
+  // Boolean to disable new game button until all data is ready
+  const disableButton = isLoading || isError || battlingPokemonUrls.length !== 2;
+
   return (
     <Center height="100vh" flexDirection="column">
       <Banner />
       <Center>
-        <Button onClick={handleClick} isLoading={isLoading}>
+        <Button onClick={handleClick} isLoading={disableButton}>
           New Game
         </Button>
       </Center>
