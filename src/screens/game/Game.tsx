@@ -131,6 +131,12 @@ export default function Game() {
   // Boolean to display loading spinner until all data is ready
   const renderScreen = !isLoading && battlingPokemon.length === 2;
 
+  /**
+   * IMPORTANT !
+   * Battle is finished when one of the battling Pokemon's HP reaches 0.
+   * That functionality is implemented in Pokemon component.
+   */
+
   return (
     <Center height="100%" flexDirection="column">
       {renderScreen ? (
@@ -180,7 +186,6 @@ export default function Game() {
         <EndGameModal
           isOpen={gameFinished}
           onClose={() => setGameFinished(false)}
-          winningPokemon={battlingPokemon.find((pokemon) => pokemon.remainingHp! > 0)!.name}
           resetGameComponentState={resetGameComponentState}
         />
       )}

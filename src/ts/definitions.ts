@@ -44,8 +44,9 @@ export interface IGameState {
   pokemonDataUrls: IPokemonUrl[];
   battlingPokemonUrls: string[];
   battlingPokemons: IPokemon[];
-  activePokemon: TBattlingPokemonIndex;
   log: string[];
   missChance: number;
   battleStatus: TBattleStatus;
+  activePokemon: TBattlingPokemonIndex;
+  winner: number | null;
 }

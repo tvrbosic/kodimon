@@ -34,9 +34,10 @@ export default function Home() {
   useEffect(() => {
     if (!isLoading && data) {
       const battlingPokemonUrls: string[] = [];
-      // Get two random pokemon URL's and set to state which will be used on Game page to fetch Pokemon data
+      // Get two random pokemon URL's which will be used on Game page to fetch Pokemon data
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
+      // Set battling pokemon URL's to state
       dispatch(setBattlingPokemonUrls(battlingPokemonUrls));
       // Set all Pokemon URL's to state which will be used in AppMenu component
       dispatch(setPokemonDataUrls(data.results));

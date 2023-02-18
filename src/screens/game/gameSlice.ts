@@ -12,12 +12,13 @@ import {
 // Define the initial state using IGameState
 const initialState: IGameState = {
   pokemonDataUrls: [],
-  battlingPokemonUrls: [],
-  battlingPokemons: [],
-  activePokemon: 0, // battlingPokemons array index
+  battlingPokemonUrls: [], // NOTE: battlingPokemonUrls[0] corresponds to pokemon at battlingPokemons[0]
+  battlingPokemons: [], // NOTE: battlingPokemonUrls[0] corresponds to pokemon at battlingPokemons[0]
   battleStatus: 'pending',
   log: [],
   missChance: 0.2,
+  activePokemon: 0, // battlingPokemons array index
+  winner: null, // battlingPokemons array index
 };
 
 const gameSlice = createSlice({
@@ -45,6 +46,11 @@ const gameSlice = createSlice({
         : (state.activePokemon = 1);
     },
     setBattleStatus: (state, action: PayloadAction<TBattleStatus>) => {
+      if (action.payload === 'finished') {
+        // Battle is finished, find remaining Pokemon index and set as winner
+        // NOTE: battlingPokemonUrls[0] corresponds to pokemon at battlingPokemons[0]
+        state.winner = state.battlingPokemons.findIndex((pokemon) => pokemon.remainingHp! > 0);
+      }
       state.battleStatus = action.payload;
     },
     switchActivePokemon: (state) => {
@@ -69,6 +75,17 @@ const gameSlice = createSlice({
       state.activePokemon = 0;
       state.battleStatus = 'pending';
       state.log = [];
+      state.activePokemon = 0;
+      state.winner = null;
+    },
+    resetForNewOpponent: (state) => {
+      // Difference from resetGameState is that logs are not cleared
+      state.battlingPokemonUrls = [];
+      state.battlingPokemons = [];
+      state.activePokemon = 0;
+      state.battleStatus = 'pending';
+      state.activePokemon = 0;
+      state.winner = null;
     },
   },
 });
@@ -83,6 +100,7 @@ export const {
   processAttackDamage,
   addLogEntry,
   resetGameState,
+  resetForNewOpponent,
 } = gameSlice.actions;
 
 // Used by Redux Provider in index.js
