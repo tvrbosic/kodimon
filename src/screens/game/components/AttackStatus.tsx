@@ -1,23 +1,46 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, chakra, shouldForwardProp } from '@chakra-ui/react';
+import { motion, isValidMotionProp } from 'framer-motion';
+
 interface IAttackStatusProps {
-  status: string | null;
+  statusText: string | null;
   justifyContent: 'start' | 'end';
 }
 
-export default function AttackStatus({ status, justifyContent }: IAttackStatusProps) {
-  const statusText =
-    status === 'Miss !' ? (
+// Create element with chakra factory function that will accept framer motion props
+const StatusTextAnimation = chakra(motion.div, {
+  // Allow motion props and non-Chakra props to be forwarded
+  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+});
+
+export default function AttackStatus({ statusText, justifyContent }: IAttackStatusProps) {
+  const statusTextElement =
+    statusText === 'Miss !' ? (
       <Text color="black" transform="rotate(-15deg)">
-        {status}
+        {statusText}
       </Text>
     ) : (
       <Text color="red" transform="rotate(15deg)">
-        {status}
+        {statusText}
       </Text>
     );
+
   return (
     <Flex minHeight="16" fontSize="22" fontWeight="bold" justifyContent={justifyContent}>
-      {statusText}
+      {statusText && (
+        <StatusTextAnimation
+          animate={{
+            scale: [1, 1.5, 1.5, 1, 1],
+            opacity: [1, 1, 0.75, 0.5, 0],
+          }}
+          // @ts-ignore no problem in operation, although type error appears (Chakra UI documentation)
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+          }}
+        >
+          {statusTextElement}
+        </StatusTextAnimation>
+      )}
     </Flex>
   );
 }

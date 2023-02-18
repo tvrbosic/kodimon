@@ -118,10 +118,10 @@ export default function Game() {
   return (
     <Center height="100%" flexDirection="column">
       {renderScreen ? (
-        <VStack width="100%">
+        <VStack width="100%" pt="4">
           <Flex width="100%" mb="8">
             <Box width="20%">
-              <AttackStatus status={leftAttackStatus} justifyContent="end" />
+              <AttackStatus statusText={leftAttackStatus} justifyContent="end" />
               <Pokemon pokemonData={battlingPokemon[0]} />
             </Box>
             <Spacer />
@@ -130,7 +130,7 @@ export default function Game() {
             </Box>
             <Spacer />
             <Box width="20%">
-              <AttackStatus status={rightAttackStatus} justifyContent="start" />
+              <AttackStatus statusText={rightAttackStatus} justifyContent="start" />
               <Pokemon pokemonData={battlingPokemon[1]} />
             </Box>
           </Flex>
