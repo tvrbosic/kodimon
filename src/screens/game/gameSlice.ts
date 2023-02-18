@@ -63,6 +63,7 @@ const gameSlice = createSlice({
     addLogEntry: (state, action: PayloadAction<string>) => {
       state.log.push(action.payload);
     },
+    resetGameState: () => initialState,
   },
 });
 
@@ -75,6 +76,7 @@ export const {
   switchActivePokemon,
   processAttackDamage,
   addLogEntry,
+  resetGameState,
 } = gameSlice.actions;
 
 // Used by Redux Provider in index.js

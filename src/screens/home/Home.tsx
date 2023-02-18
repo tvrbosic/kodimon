@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { useFetchData } from '../../hooks/useFetchData';
 import { useAppDispatch } from '../../state/hooks';
-import { setPokemonDataUrls, setBattlingPokemonUrls, setBattleStatus } from '../game/gameSlice';
+import {
+  setPokemonDataUrls,
+  setBattlingPokemonUrls,
+  setBattleStatus,
+  resetGameState,
+} from '../game/gameSlice';
 import { IPokemonUrls } from '../../ts/definitions';
 import { randomInteger } from '../../utils/utility';
 
@@ -20,9 +25,9 @@ export default function Home() {
     `/pokemon?limit=${pokemonSpeciesCount}`
   );
 
-  // Set battle status to pending when Home page is visited
+  // Reset required game state values when Home page is visited
   useEffect(() => {
-    dispatch(setBattleStatus('pending'));
+    dispatch(resetGameState());
   }, [dispatch]);
 
   // Set Pokemon URL's to state after data fetch

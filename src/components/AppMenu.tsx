@@ -1,6 +1,6 @@
-import { Box, VStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { Box, VStack, Text } from '@chakra-ui/react';
 
-import { Text } from '@chakra-ui/react';
 import ThemeContainer from './ThemeContainer';
 import Button from './Button';
 
@@ -9,6 +9,12 @@ interface IAppMenuProps {
 }
 
 export default function AppMenu({ display = 'block' }: IAppMenuProps) {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <Box display={display}>
       <Text fontWeight="bold" ml="2" mb="2">
@@ -16,7 +22,7 @@ export default function AppMenu({ display = 'block' }: IAppMenuProps) {
       </Text>
       <ThemeContainer flexDirection="column" p="6">
         <VStack spacing="3">
-          <Button>Home</Button>
+          <Button onClick={handleHomeClick}>Home</Button>
           <Button>New Game</Button>
           <Button>New opponent</Button>
         </VStack>
