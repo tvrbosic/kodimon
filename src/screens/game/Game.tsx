@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Center, VStack, Flex, Box, Spacer, Spinner, useDisclosure } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { Center, VStack, Flex, Box, Spacer, Spinner } from '@chakra-ui/react';
 
 import { useFetchBatchData } from '../../hooks/useFetchBatchData';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
@@ -28,15 +29,19 @@ export default function Game() {
   const battleStatus = useAppSelector((state) => state.game.battleStatus);
   const [leftAttackStatus, setLeftAttackStatus] = useState<null | string>(null);
   const [rightAttackStatus, setRightAttackStatus] = useState<null | string>(null);
-  const dispatch = useAppDispatch();
   const [gameFinished, setGameFinished] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   // Dispatch setBattlingPokemons after data fetching finishes
   useEffect(() => {
-    if (!isLoading && data) {
-      dispatch(setBattlingPokemons(data));
+    if (!isLoading && data && data.length !== 2) {
+      // Covers case if user manually refreshes page while on /game (battlingPokemonUrls required to fetch data will be null)
+      navigate('/');
+    } else if (data) {
+      dispatch(setBattlingPokemons(data!));
     }
-  }, [isLoading, data, dispatch]);
+  }, [isLoading, data, dispatch, navigate]);
 
   // If battle is finished set gameFinished to trigger end game menu
   useEffect(() => {
