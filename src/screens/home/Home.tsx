@@ -34,11 +34,12 @@ export default function Home() {
   useEffect(() => {
     if (!isLoading && data) {
       const battlingPokemonUrls: string[] = [];
-      // Get two random pokemon URL's and set to state
+      // Get two random pokemon URL's and set to state which will be used on Game page to fetch Pokemon data
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
       battlingPokemonUrls.push(data.results[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
-      dispatch(setPokemonDataUrls(data.results));
       dispatch(setBattlingPokemonUrls(battlingPokemonUrls));
+      // Set all Pokemon URL's to state which will be used in AppMenu component
+      dispatch(setPokemonDataUrls(data.results));
     }
   }, [isLoading, data, dispatch]);
 

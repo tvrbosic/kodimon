@@ -7,9 +7,16 @@ interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
   winningPokemon: string;
+  resetGameComponentState: () => void;
 }
 
-function EndGameModal({ isOpen, onClose, winningPokemon, ...rest }: IModalProps) {
+function EndGameModal({
+  isOpen,
+  onClose,
+  winningPokemon,
+  resetGameComponentState,
+  ...rest
+}: IModalProps) {
   return (
     <>
       <CModal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} {...rest}>
@@ -19,7 +26,7 @@ function EndGameModal({ isOpen, onClose, winningPokemon, ...rest }: IModalProps)
             {capitalize(winningPokemon)} won!
           </Text>
           <Spacer />
-          <AppMenu />
+          <AppMenu resetGameComponentState={resetGameComponentState} />
         </ModalContent>
       </CModal>
     </>

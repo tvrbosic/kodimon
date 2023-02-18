@@ -38,7 +38,7 @@ export default function Game() {
     }
   }, [isLoading, data, dispatch]);
 
-  // Track battle status and when battle is finished, set gameFinished to trigger end game message and menu
+  // If battle is finished set gameFinished to trigger end game menu
   useEffect(() => {
     battleStatus === 'finished' ? setGameFinished(true) : setGameFinished(false);
   }, [battleStatus]);
@@ -73,6 +73,13 @@ export default function Game() {
     return damage
       ? `${attackerName} attacked ${defenderName} for ${roundToTwoDecimalPlaces(damage)} dmg`
       : `${attackerName} missed ${defenderName}`;
+  };
+
+  // Reset Game component local state required to start new game from AppMenu
+  const resetGameComponentState = () => {
+    setGameFinished(false);
+    setLeftAttackStatus(null);
+    setRightAttackStatus(null);
   };
 
   const attackHandler = (activePokemon: TBattlingPokemonIndex): void => {
@@ -151,7 +158,10 @@ export default function Game() {
           <Flex width="100%">
             <Box flex="1">
               <Flex flexDirection="column" justifyContent="end" height="100%">
-                <AppMenu display={gameFinished ? 'none' : 'block'} />
+                <AppMenu
+                  display={gameFinished ? 'none' : 'block'}
+                  resetGameComponentState={resetGameComponentState}
+                />
               </Flex>
             </Box>
             <Spacer />
@@ -171,6 +181,7 @@ export default function Game() {
           isOpen={gameFinished}
           onClose={() => setGameFinished(false)}
           winningPokemon={battlingPokemon.find((pokemon) => pokemon.remainingHp! > 0)!.name}
+          resetGameComponentState={resetGameComponentState}
         />
       )}
     </Center>

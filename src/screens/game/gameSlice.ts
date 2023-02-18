@@ -63,7 +63,13 @@ const gameSlice = createSlice({
     addLogEntry: (state, action: PayloadAction<string>) => {
       state.log.push(action.payload);
     },
-    resetGameState: () => initialState,
+    resetGameState: (state) => {
+      state.battlingPokemonUrls = [];
+      state.battlingPokemons = [];
+      state.activePokemon = 0;
+      state.battleStatus = 'pending';
+      state.log = [];
+    },
   },
 });
 
