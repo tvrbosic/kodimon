@@ -1,5 +1,5 @@
-import { Center, VStack, Flex, Box, Spacer, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { Center, VStack, Flex, Box, Spacer, Spinner, useDisclosure } from '@chakra-ui/react';
 
 import { useFetchBatchData } from '../../hooks/useFetchBatchData';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
@@ -17,6 +17,7 @@ import Pokemon from './components/Pokemon';
 import AttackControl from './components/AttackControl';
 import Logs from './components/Logs';
 import AppMenu from '../../components/AppMenu';
+import EndGameModal from './components/EndGameModal';
 
 export default function Game() {
   const battlingPokemonUrls = useAppSelector((state) => state.game.battlingPokemonUrls);
@@ -24,15 +25,23 @@ export default function Game() {
   const battlingPokemon = useAppSelector((state) => state.game.battlingPokemons);
   const activePokemon = useAppSelector((state) => state.game.activePokemon);
   const missChance = useAppSelector((state) => state.game.missChance);
+  const battleStatus = useAppSelector((state) => state.game.battleStatus);
   const [leftAttackStatus, setLeftAttackStatus] = useState<null | string>(null);
   const [rightAttackStatus, setRightAttackStatus] = useState<null | string>(null);
   const dispatch = useAppDispatch();
+  const [gameFinished, setGameFinished] = useState<boolean>(false);
 
+  // Dispatch setBattlingPokemons after data fetching finishes
   useEffect(() => {
     if (!isLoading && data) {
       dispatch(setBattlingPokemons(data));
     }
   }, [isLoading, data, dispatch]);
+
+  // Track battle status and when battle is finished, set gameFinished to trigger end game message and menu
+  useEffect(() => {
+    battleStatus === 'finished' ? setGameFinished(true) : setGameFinished(false);
+  }, [battleStatus]);
 
   const processMissChance = () => {
     // Miss = true, hit = false
@@ -126,7 +135,11 @@ export default function Game() {
             </Box>
             <Spacer />
             <Box width="15%">
-              <AttackControl activePokemon={activePokemon} attackHandler={attackHandler} />
+              <AttackControl
+                activePokemon={activePokemon}
+                attackHandler={attackHandler}
+                display={gameFinished ? 'none' : 'flex'}
+              />
             </Box>
             <Spacer />
             <Box width="20%">
@@ -138,7 +151,7 @@ export default function Game() {
           <Flex width="100%">
             <Box flex="1">
               <Flex flexDirection="column" justifyContent="end" height="100%">
-                <AppMenu />
+                <AppMenu display={gameFinished ? 'none' : 'block'} />
               </Flex>
             </Box>
             <Spacer />
@@ -151,6 +164,14 @@ export default function Game() {
         <Center minHeight="100vh">
           <Spinner thickness="4px" speed="0.65s" emptyColor="gray.300" color="blue" size="xl" />
         </Center>
+      )}
+
+      {gameFinished && (
+        <EndGameModal
+          isOpen={gameFinished}
+          onClose={() => setGameFinished(false)}
+          winningPokemon={battlingPokemon.find((pokemon) => pokemon.remainingHp! > 0)!.name}
+        />
       )}
     </Center>
   );

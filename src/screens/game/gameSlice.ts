@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { IGameState, IPokemonUrl, IPokemon, IProcessAttackDamage } from '../../ts/definitions';
+import {
+  IGameState,
+  IPokemonUrl,
+  IPokemon,
+  IProcessAttackDamage,
+  TBattleStatus,
+} from '../../ts/definitions';
 
 // Define the initial state using IGameState
 const initialState: IGameState = {
@@ -38,6 +44,9 @@ const gameSlice = createSlice({
         ? (state.activePokemon = 0)
         : (state.activePokemon = 1);
     },
+    setBattleStatus: (state, action: PayloadAction<TBattleStatus>) => {
+      state.battleStatus = action.payload;
+    },
     switchActivePokemon: (state) => {
       state.activePokemon = state.activePokemon === 0 ? 1 : 0;
     },
@@ -62,6 +71,7 @@ export const {
   setPokemonDataUrls,
   setBattlingPokemonUrls,
   setBattlingPokemons,
+  setBattleStatus,
   switchActivePokemon,
   processAttackDamage,
   addLogEntry,

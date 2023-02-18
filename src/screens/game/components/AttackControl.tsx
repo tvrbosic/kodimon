@@ -8,13 +8,24 @@ import Button from '../../../components/Button';
 interface IAttackControl {
   activePokemon: TBattlingPokemonIndex;
   attackHandler: (activePokemon: TBattlingPokemonIndex) => void;
+  display?: 'none' | 'flex';
 }
 
-export default function AttackControl({ activePokemon, attackHandler }: IAttackControl) {
+export default function AttackControl({
+  activePokemon,
+  attackHandler,
+  display = 'flex',
+}: IAttackControl) {
   const leftIsActive = activePokemon === 0 ? true : false;
 
   return (
-    <Flex height="100%" flexDirection="column" justifyContent="end" alignItems="center">
+    <Flex
+      height="100%"
+      flexDirection="column"
+      justifyContent="end"
+      alignItems="center"
+      display={display}
+    >
       {leftIsActive ? (
         <Image
           mb="6"

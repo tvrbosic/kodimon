@@ -4,9 +4,13 @@ import { Text } from '@chakra-ui/react';
 import ThemeContainer from './ThemeContainer';
 import Button from './Button';
 
-export default function AppMenu() {
+interface IAppMenuProps {
+  display?: 'none' | 'block';
+}
+
+export default function AppMenu({ display = 'block' }: IAppMenuProps) {
   return (
-    <Box>
+    <Box display={display}>
       <Text fontWeight="bold" ml="2" mb="2">
         Menu
       </Text>

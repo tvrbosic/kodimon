@@ -1,4 +1,4 @@
-import { Flex, VStack } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 
 import { Text } from '@chakra-ui/react';
 import ThemeContainer from '../../../components/ThemeContainer';
@@ -19,13 +19,33 @@ export default function Logs() {
         py="5"
         flexDirection="column"
       >
-        <VStack spacing="1" alignItems="start">
+        <Box
+          maxHeight="22vh"
+          overflow="auto"
+          sx={{
+            '::-webkit-scrollbar': {
+              width: '2',
+            },
+            '::-webkit-scrollbar-track': {
+              width: '2',
+              borderRadius: 'full',
+              background: 'lighterOrange',
+            },
+            '::-webkit-scrollbar-thumb': {
+              background: 'lightOrange',
+              borderRadius: 'full',
+            },
+            '::-webkit-scrollbar-button': {
+              display: 'none',
+            },
+          }}
+        >
           {logEntries.map((entry, index) => (
             <Text key={index} fontWeight="bold">
               {entry}
             </Text>
           ))}
-        </VStack>
+        </Box>
       </ThemeContainer>
     </Flex>
   );

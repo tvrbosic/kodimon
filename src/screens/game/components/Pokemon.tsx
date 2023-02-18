@@ -1,6 +1,9 @@
+import { useEffect } from 'react';
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 
 import { IPokemon } from '../../../ts/definitions';
+import { useAppDispatch } from '../../../state/hooks';
+import { setBattleStatus } from '../gameSlice';
 import { capitalize } from '../../../utils/utility';
 
 import HpBar from './HpBar';
@@ -15,6 +18,13 @@ const calculateRemainingHpPercentage = (pokemonData: IPokemon): number =>
 
 export default function Pokemon({ pokemonData }: IPokemonProps) {
   const remainingHpPercentage = calculateRemainingHpPercentage(pokemonData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (pokemonData.remainingHp === 0) {
+      dispatch(setBattleStatus('finished'));
+    }
+  }, [pokemonData.remainingHp, dispatch]);
 
   return (
     <Box>

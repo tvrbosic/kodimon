@@ -32,6 +32,8 @@ export interface IPokemon {
 
 export type TBattlingPokemonIndex = 0 | 1;
 
+export type TBattleStatus = 'pending' | 'ongoing' | 'finished';
+
 export interface IProcessAttackDamage {
   damage: number;
   defendingPokemon: TBattlingPokemonIndex;
@@ -45,5 +47,5 @@ export interface IGameState {
   activePokemon: TBattlingPokemonIndex;
   log: string[];
   missChance: number;
-  battleStatus: 'pending' | 'ongoing' | 'finished';
+  battleStatus: TBattleStatus;
 }
