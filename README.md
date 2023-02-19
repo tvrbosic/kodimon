@@ -1,8 +1,10 @@
 # Kodimon
 
-Simple Pokemon Battle Game
+Simple Pokemon Battling Game which uses [PokeApi](https://pokeapi.co/docs/v2) as backend.
 
-## Usage
+Application is deployed with GitHub pages and can be tested following link: [Kodimon](https://tvrbosic.github.io/kodimon/)
+
+## Running locally (Linux)
 
 1. Clone repository: `git clone git@github.com:tvrbosic/kodimon.git`
 2. Install npm packages: `cd kodimon && npm install`
@@ -10,7 +12,8 @@ Simple Pokemon Battle Game
 
 ## npm packages used
 
-- [React Router](https://reactrouter.com)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Chakra UI](https://chakra-ui.com)
+- [React Router](https://reactrouter.com)
 - [Axios](https://axios-http.com)
+- [TypeScript](https://www.typescriptlang.org/)
