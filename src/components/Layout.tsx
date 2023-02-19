@@ -9,7 +9,6 @@ function Layout() {
   const { onClose } = useDisclosure();
   const infoMessage = useAppSelector((state) => state.game.infoMessage);
   const modalIsOpen = infoMessage ? true : false;
-  console.log(infoMessage);
 
   return (
     <Box height="100vh" px="20" py="5" fontSize={{ base: 16, '2xl': 18 }} overflow="hidden">
