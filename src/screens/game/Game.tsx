@@ -17,6 +17,8 @@ import {
   switchActivePokemon,
   processAttackDamage,
   addLogEntry,
+  setInfoMessage,
+  resetGameState,
 } from './gameSlice';
 
 import AttackStatus from './components/AttackStatus';
@@ -55,8 +57,11 @@ export default function Game() {
 
   // Dispatch setBattlingPokemons after data fetching finishes
   useEffect(() => {
-    if (!isLoading && data && data.length !== 2) {
-    } else if (data && data.length === 2) {
+    if (!isLoading && isError) {
+      dispatch(setInfoMessage('An error occurred while fetching data, please try again later!'));
+      dispatch(resetGameState());
+      resetGameComponentState();
+    } else if (!isLoading && data && data.length === 2) {
       // Set remainingHp to Hp stat value for each battling Pokemon (remainingHp is field which will be modified through battle)
       const battlingPokemon = data.map((pokemon) => ({
         ...pokemon,
@@ -64,7 +69,7 @@ export default function Game() {
       }));
       dispatch(setBattlingPokemons(battlingPokemon));
     }
-  }, [isLoading, data, dispatch]);
+  }, [isLoading, data, dispatch, isError]);
 
   // New game or New opponent actions will set battlingPokemonUrls
   // On battlingPokemonUrls change, and if battlingPokemonUrls is set, fetch new Pokemon data

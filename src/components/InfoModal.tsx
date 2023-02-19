@@ -1,4 +1,4 @@
-import { Modal as CModal, ModalOverlay, ModalContent, Flex, Text } from '@chakra-ui/react';
+import { Modal as CModal, ModalOverlay, ModalContent, Text } from '@chakra-ui/react';
 
 import { useAppDispatch } from '../state/hooks';
 import { clearInfoMessage } from '../screens/game/gameSlice';
