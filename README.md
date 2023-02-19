@@ -12,8 +12,9 @@ Application is deployed with GitHub pages and can be tested following link: [Kod
 
 ## npm packages used
 
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Chakra UI](https://chakra-ui.com)
-- [React Router](https://reactrouter.com)
-- [Axios](https://axios-http.com)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Framer Motion](https://www.framer.com/)
+- [React Router](https://reactrouter.com/)
+- [Axios](https://axios-http.com/)

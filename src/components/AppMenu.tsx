@@ -64,8 +64,8 @@ export default function AppMenu({ display = 'block', resetGameComponentState }: 
       <Text fontWeight="bold" ml="2" mb="2">
         Menu
       </Text>
-      <ThemeContainer flexDirection="column" p="6">
-        <VStack spacing="3">
+      <ThemeContainer flexDirection="column" px="6" py="4">
+        <VStack spacing="2.5">
           <Button onClick={homeClickHandler}>Home</Button>
           <Button onClick={newGameClickHandler}>New Game</Button>
           <Button onClick={newOpponentClickHandler}>New opponent</Button>

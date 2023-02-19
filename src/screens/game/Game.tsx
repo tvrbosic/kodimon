@@ -188,9 +188,9 @@ export default function Game() {
    */
 
   return (
-    <Center height="100%" flexDirection="column">
+    <Flex height="100%" flexDirection="column">
       {renderScreen ? (
-        <VStack width="100%" pt="4">
+        <VStack width="100%" pt={{ base: 4, '2xl': 8 }}>
           <Flex width="100%" mb={{ base: 8, '2xl': 10 }}>
             <Box width="20%">
               <AttackStatus statusText={leftAttackStatus} justifyContent="end" />
@@ -219,7 +219,7 @@ export default function Game() {
             </Box>
           </Flex>
 
-          <Flex width="100%">
+          <Flex width="100%" pb={{ base: 4, '2xl': 8 }}>
             <Box flex="1">
               <Flex flexDirection="column" justifyContent="end" height="100%">
                 <AppMenu
@@ -247,6 +247,6 @@ export default function Game() {
           resetGameComponentState={resetGameComponentState}
         />
       )}
-    </Center>
+    </Flex>
   );
 }

@@ -36,19 +36,17 @@ export default function Pokemon({
   return (
     <Box>
       <HpBar remainingPercentage={remainingHpPercentage} />
-      <Flex flexDirection="column" alignItems="center" mb="2">
-        <Text fontWeight="bold" ml="2" mb="2">
-          {capitalize(pokemonData.name)}
-        </Text>
+      <Flex flexDirection="column" alignItems="center">
+        <Text fontWeight="bold">{capitalize(pokemonData.name)}</Text>
       </Flex>
 
-      <Flex width="100%" flexDirection="column" alignItems="center" mb="2">
+      <Flex width="100%" flexDirection="column" alignItems="center">
         <PokemonAttackAnimation
           imgKeyRef={imgKeyRef}
           animationAttackDirection={animationAttackDirection}
         >
           <Image
-            boxSize={{ base: '150px', '2xl': '175px' }}
+            boxSize={{ base: '130px', '2xl': '175px' }}
             src={pokemonData.sprites.front_default}
             alt={pokemonData.name}
           />
