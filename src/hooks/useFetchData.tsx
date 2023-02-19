@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { IHttpError } from '../ts/definitions';
@@ -6,13 +6,13 @@ import { IHttpError } from '../ts/definitions';
 // Configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-export function useFetchData<Type>(path: string) {
+export function useFetchData<Type>() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Type | null>(null);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState<IHttpError | null>(null);
 
-  useEffect(() => {
+  const sendRequest = useCallback((path: string) => {
     setIsLoading(true);
 
     axios
@@ -30,12 +30,13 @@ export function useFetchData<Type>(path: string) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [path]);
+  }, []);
 
   return {
     isLoading,
     data,
     isError,
     error,
+    sendRequest,
   };
 }

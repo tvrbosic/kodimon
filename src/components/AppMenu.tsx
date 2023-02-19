@@ -6,6 +6,7 @@ import {
   setBattlingPokemonUrls,
   resetGameState,
   resetForNewOpponent,
+  setInfoMessage,
 } from '../screens/game/gameSlice';
 import { randomInteger } from '../utils/utility';
 import ThemeContainer from './ThemeContainer';
@@ -16,42 +17,45 @@ interface IAppMenuProps {
   resetGameComponentState: () => void;
 }
 
-const pokemonSpeciesCount = process.env.REACT_APP_POKEMON_COUNT;
-
 export default function AppMenu({ display = 'block', resetGameComponentState }: IAppMenuProps) {
   const pokemonDataUrls = useAppSelector((state) => state.game.pokemonDataUrls);
-  const winningPokemonUrl = useAppSelector(
-    // NOTE: battlingPokemonUrls[0] corresponds to pokemon at battlingPokemons[0]
-    (state) => state.game.battlingPokemonUrls[state.game.winner!]
-  );
+  const winnerName = useAppSelector((state) => state.game.winnerName);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleHomeClick = () => {
+  const homeClickHandler = () => {
     navigate('/');
   };
 
-  const handleNewGameClick = () => {
+  const newGameClickHandler = () => {
     resetGameComponentState();
     dispatch(resetGameState());
     // Get two random pokemon URL's which will be used on Game page to fetch Pokemon data
-    const battlingPokemonUrls: string[] = [];
-    battlingPokemonUrls.push(pokemonDataUrls[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
-    battlingPokemonUrls.push(pokemonDataUrls[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
+    const leftPokemonUrl = pokemonDataUrls[randomInteger(1, pokemonDataUrls.length)].url;
+    const rightPokemonUrl = pokemonDataUrls[randomInteger(1, pokemonDataUrls.length)].url;
     // Set battling pokemon URL's to state
-    dispatch(setBattlingPokemonUrls(battlingPokemonUrls));
+    dispatch(setBattlingPokemonUrls([leftPokemonUrl, rightPokemonUrl]));
   };
 
-  const handleNewOpponentClick = () => {
+  const newOpponentClickHandler = () => {
+    // If battle still in progress
+    if (!winnerName) {
+      dispatch(
+        setInfoMessage('The winner has not yet been determined. End the current battle first!')
+      );
+      return;
+    }
     // Reset necessary game states
     resetGameComponentState();
-    dispatch(resetForNewOpponent());
-    // Rembember  winning Pokemon URL's and get new random pokemon URL which will be new opponent
-    const battlingPokemonUrls: string[] = [];
-    battlingPokemonUrls.push(winningPokemonUrl);
-    battlingPokemonUrls.push(pokemonDataUrls[randomInteger(1, parseInt(pokemonSpeciesCount!))].url);
+    dispatch(resetForNewOpponent()); // Logs will remain
+    // Find URL of winning Pokemon
+    const winnerURL = pokemonDataUrls.find((element) => element.name === winnerName)?.url!;
+    // Change URL's of loosing pokemon which will be used on Game page to fetch Pokemon data
+    const leftPokemonUrl = winnerURL;
+    const rightPokemonUrl = pokemonDataUrls[randomInteger(1, pokemonDataUrls.length)].url;
     // Set battling pokemon URL's to state
-    dispatch(setBattlingPokemonUrls(battlingPokemonUrls));
+    dispatch(setBattlingPokemonUrls([leftPokemonUrl, rightPokemonUrl]));
   };
 
   return (
@@ -61,9 +65,9 @@ export default function AppMenu({ display = 'block', resetGameComponentState }: 
       </Text>
       <ThemeContainer flexDirection="column" p="6">
         <VStack spacing="3">
-          <Button onClick={handleHomeClick}>Home</Button>
-          <Button onClick={handleNewGameClick}>New Game</Button>
-          <Button onClick={handleNewOpponentClick}>New opponent</Button>
+          <Button onClick={homeClickHandler}>Home</Button>
+          <Button onClick={newGameClickHandler}>New Game</Button>
+          <Button onClick={newOpponentClickHandler}>New opponent</Button>
         </VStack>
       </ThemeContainer>
     </Box>

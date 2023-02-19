@@ -5,8 +5,14 @@ import { Center, VStack, Flex, Box, Spacer, Spinner } from '@chakra-ui/react';
 import { useFetchBatchData } from '../../hooks/useFetchBatchData';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { IPokemon, TBattlingPokemonIndex } from '../../ts/definitions';
-import { capitalize, randomNumber, roundToTwoDecimalPlaces } from '../../utils/utility';
 import {
+  randomInteger,
+  randomNumber,
+  capitalize,
+  roundToTwoDecimalPlaces,
+} from '../../utils/utility';
+import {
+  setBattlingPokemonUrls,
   setBattlingPokemons,
   switchActivePokemon,
   processAttackDamage,
@@ -21,8 +27,8 @@ import AppMenu from '../../components/AppMenu';
 import EndGameModal from './components/EndGameModal';
 
 export default function Game() {
+  const pokemonDataUrls = useAppSelector((state) => state.game.pokemonDataUrls);
   const battlingPokemonUrls = useAppSelector((state) => state.game.battlingPokemonUrls);
-  const { isLoading, data, isError, error } = useFetchBatchData<IPokemon>(battlingPokemonUrls);
   const battlingPokemon = useAppSelector((state) => state.game.battlingPokemons);
   const activePokemon = useAppSelector((state) => state.game.activePokemon);
   const missChance = useAppSelector((state) => state.game.missChance);
@@ -30,18 +36,43 @@ export default function Game() {
   const [leftAttackStatus, setLeftAttackStatus] = useState<null | string>(null);
   const [rightAttackStatus, setRightAttackStatus] = useState<null | string>(null);
   const [gameFinished, setGameFinished] = useState<boolean>(false);
+  const { isLoading, data, isError, error, sendBatchRequest } = useFetchBatchData<IPokemon>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  // On initial component mount get two random pokemon URL's and fetch that data
+  useEffect(() => {
+    if (pokemonDataUrls && pokemonDataUrls.length === 0) {
+      // Covers case if user manually refreshes page while on path '/game'
+      // pokemonDataUrls required to fetch data will be null because they are fetched and set on homepage
+      navigate('/');
+    } else {
+      const leftPokemonUrl = pokemonDataUrls[randomInteger(1, pokemonDataUrls.length)].url;
+      const rightPokemonUrl = pokemonDataUrls[randomInteger(1, pokemonDataUrls.length)].url;
+      sendBatchRequest([leftPokemonUrl, rightPokemonUrl]);
+    }
+  }, [navigate, sendBatchRequest, pokemonDataUrls]);
 
   // Dispatch setBattlingPokemons after data fetching finishes
   useEffect(() => {
     if (!isLoading && data && data.length !== 2) {
-      // Covers case if user manually refreshes page while on /game (battlingPokemonUrls required to fetch data will be null)
-      navigate('/');
-    } else if (data) {
-      dispatch(setBattlingPokemons(data!));
+    } else if (data && data.length === 2) {
+      // Set remainingHp to Hp stat value for each battling Pokemon (remainingHp is field which will be modified through battle)
+      const battlingPokemon = data.map((pokemon) => ({
+        ...pokemon,
+        remainingHp: pokemon.stats[0].base_stat,
+      }));
+      dispatch(setBattlingPokemons(battlingPokemon));
     }
-  }, [isLoading, data, dispatch, navigate]);
+  }, [isLoading, data, dispatch]);
+
+  // New game or New opponent actions will set battlingPokemonUrls
+  // On battlingPokemonUrls change, and if battlingPokemonUrls is set, fetch new Pokemon data
+  useEffect(() => {
+    if (battlingPokemonUrls && battlingPokemonUrls.length === 2) {
+      sendBatchRequest(battlingPokemonUrls);
+    }
+  }, [battlingPokemonUrls, sendBatchRequest]);
 
   // If battle is finished set gameFinished to trigger end game menu
   useEffect(() => {

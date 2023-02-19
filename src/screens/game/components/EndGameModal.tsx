@@ -11,7 +11,7 @@ interface IModalProps {
 }
 
 function EndGameModal({ isOpen, onClose, resetGameComponentState, ...rest }: IModalProps) {
-  const winningPokemon = useAppSelector((state) => state.game.battlingPokemons[state.game.winner!]);
+  const winningPokemon = useAppSelector((state) => state.game.winnerName);
 
   return (
     <>
@@ -19,7 +19,7 @@ function EndGameModal({ isOpen, onClose, resetGameComponentState, ...rest }: IMo
         <ModalOverlay bg="whiteAlpha.700" />
         <ModalContent boxShadow="none" alignItems="center" mt="20vh">
           <Text fontSize="4xl" fontWeight="bold" mb="12">
-            {capitalize(winningPokemon.name)} won!
+            {capitalize(winningPokemon!)} won!
           </Text>
           <Spacer />
           <AppMenu resetGameComponentState={resetGameComponentState} />

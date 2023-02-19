@@ -22,6 +22,7 @@ export interface IPokemonStat {
 }
 
 export interface IPokemon {
+  id: number;
   name: string;
   remainingHp?: number;
   stats: IPokemonStat[];
@@ -48,5 +49,6 @@ export interface IGameState {
   missChance: number;
   battleStatus: TBattleStatus;
   activePokemon: TBattlingPokemonIndex;
-  winner: number | null;
+  winnerName: string | undefined;
+  infoMessage: string | undefined;
 }
