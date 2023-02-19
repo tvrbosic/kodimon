@@ -1,4 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
+// BrowserRouter is replaced with HashRouter to be able to deploy to GitHub pages
+// import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import './sass/global.scss';
@@ -8,9 +10,9 @@ import AppRouter from './router/AppRouter';
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
+      <Router>
         <AppRouter />
-      </BrowserRouter>
+      </Router>
     </ChakraProvider>
   );
 }
