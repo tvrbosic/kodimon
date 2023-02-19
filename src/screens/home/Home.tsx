@@ -49,7 +49,7 @@ export default function Home() {
   const disableButton = isLoading || isError;
 
   return (
-    <Center height="100vh" flexDirection="column">
+    <Center height="100%" flexDirection="column">
       <Banner />
       <Center>
         <Button onClick={newGameClickHandler} isLoading={disableButton}>

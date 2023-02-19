@@ -36,7 +36,11 @@ export default function Pokemon({ pokemonData }: IPokemonProps) {
       </Flex>
 
       <Flex width="100%" flexDirection="column" alignItems="center" mb="2">
-        <Image boxSize="150px" src={pokemonData.sprites.front_default} alt={pokemonData.name} />
+        <Image
+          boxSize={{ lg: '150px', xl: '150px', '2xl': '175px' }}
+          src={pokemonData.sprites.front_default}
+          alt={pokemonData.name}
+        />
       </Flex>
       <Stats stats={pokemonData.stats} />
     </Box>
