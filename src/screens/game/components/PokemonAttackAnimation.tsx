@@ -35,7 +35,7 @@ const PokemonAttackAnimation = ({
       }
       // @ts-ignore no problem in operation, although type error appears (Chakra UI documentation)
       transition={{
-        duration: 0.5,
+        duration: 0.6,
         ease: 'linear',
       }}
     >

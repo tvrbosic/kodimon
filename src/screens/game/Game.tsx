@@ -37,6 +37,7 @@ export default function Game() {
   const [leftAttackStatus, setLeftAttackStatus] = useState<null | string>(null);
   const [rightAttackStatus, setRightAttackStatus] = useState<null | string>(null);
   const [gameFinished, setGameFinished] = useState<boolean>(false);
+  const [attackInProgress, setAttackInProgress] = useState<boolean>(false);
   const { isLoading, data, isError, sendBatchRequest } = useFetchBatchData<IPokemon>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -129,8 +130,14 @@ export default function Game() {
   };
 
   const attackHandler = (activePokemon: TBattlingPokemonIndex): void => {
-    let attackingPokemon: TBattlingPokemonIndex, defendingPokemon: TBattlingPokemonIndex;
+    // Set attack in progress local state which will block other attacks for duration of animation
+    setAttackInProgress(true);
+    setTimeout(() => {
+      // Delay 600 ms
+      setAttackInProgress(false);
+    }, 800);
     // Set attacking and defending Pokemon indexes
+    let attackingPokemon: TBattlingPokemonIndex, defendingPokemon: TBattlingPokemonIndex;
     if (activePokemon === 0) {
       attackingPokemon = 0;
       defendingPokemon = 1;
@@ -206,6 +213,7 @@ export default function Game() {
                 activePokemon={activePokemon}
                 attackHandler={attackHandler}
                 display={gameFinished ? 'none' : 'flex'}
+                attackInProgress={attackInProgress}
               />
             </Box>
             <Spacer />

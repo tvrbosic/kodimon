@@ -8,12 +8,14 @@ import Button from '../../../components/Button';
 interface IAttackControl {
   activePokemon: TBattlingPokemonIndex;
   attackHandler: (activePokemon: TBattlingPokemonIndex) => void;
+  attackInProgress: boolean;
   display?: 'none' | 'flex';
 }
 
 export default function AttackControl({
   activePokemon,
   attackHandler,
+  attackInProgress,
   display = 'flex',
 }: IAttackControl) {
   const leftIsActive = activePokemon === 0 ? true : false;
@@ -37,7 +39,7 @@ export default function AttackControl({
       ) : (
         <Image mb="6" src={Arrow} alt="Attack direction arrow" transition="all 0.2s ease-in-out" />
       )}
-      <Button mb="10" onClick={() => attackHandler(activePokemon)}>
+      <Button mb="10" onClick={() => attackHandler(activePokemon)} isLoading={attackInProgress}>
         Attack
       </Button>
     </Flex>
