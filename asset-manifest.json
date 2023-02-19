@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/kodimon/static/css/main.30563dfe.css",
-    "main.js": "/kodimon/static/js/main.0df9b2b0.js",
-    "static/media/Bellota-BoldItalic.ttf": "/kodimon/static/media/Bellota-BoldItalic.3b1d663c2d37d57fc0b7.ttf",
-    "static/media/Bellota-Bold.ttf": "/kodimon/static/media/Bellota-Bold.20f57b5d61d9c97dd34e.ttf",
-    "static/media/Bellota-Italic.ttf": "/kodimon/static/media/Bellota-Italic.4ce33b7ad17e2ed2ffc8.ttf",
-    "static/media/Bellota-LightItalic.ttf": "/kodimon/static/media/Bellota-LightItalic.06164ecb83fb9d353481.ttf",
-    "static/media/Bellota-Regular.ttf": "/kodimon/static/media/Bellota-Regular.0995721dbfd2744d342d.ttf",
-    "static/media/Bellota-Light.ttf": "/kodimon/static/media/Bellota-Light.b40c52e043c6ac09e794.ttf",
-    "static/media/Bellota-BoldItalic.woff": "/kodimon/static/media/Bellota-BoldItalic.7b6ceb5a9fd2ea0179c8.woff",
-    "static/media/Bellota-LightItalic.woff": "/kodimon/static/media/Bellota-LightItalic.4d3862becef8caf06293.woff",
-    "static/media/Bellota-Italic.woff": "/kodimon/static/media/Bellota-Italic.f58dd283dc05bbaa666d.woff",
-    "static/media/Bellota-Bold.woff": "/kodimon/static/media/Bellota-Bold.30ed45f94d3bc4d4f444.woff",
-    "static/media/Bellota-Regular.woff": "/kodimon/static/media/Bellota-Regular.1ef3b8b2c088e18b9787.woff",
-    "static/media/Bellota-Light.woff": "/kodimon/static/media/Bellota-Light.d2dcbaf958eae70b1900.woff",
-    "static/media/kodimon.png": "/kodimon/static/media/kodimon.7c0bed2da3b0eb99eee7.png",
-    "static/media/kodi-logo.svg": "/kodimon/static/media/kodi-logo.2b85d52aed154995c4e7aae0e0691c2d.svg",
-    "index.html": "/kodimon/index.html",
-    "static/media/arrow.svg": "/kodimon/static/media/arrow.924776536ca5bf7cdfa889df44c2c07a.svg",
-    "main.30563dfe.css.map": "/kodimon/static/css/main.30563dfe.css.map",
-    "main.0df9b2b0.js.map": "/kodimon/static/js/main.0df9b2b0.js.map"
+    "main.css": "./static/css/main.046596f4.css",
+    "main.js": "./static/js/main.1d505345.js",
+    "static/media/Bellota-BoldItalic.ttf": "./static/media/Bellota-BoldItalic.3b1d663c2d37d57fc0b7.ttf",
+    "static/media/Bellota-Bold.ttf": "./static/media/Bellota-Bold.20f57b5d61d9c97dd34e.ttf",
+    "static/media/Bellota-Italic.ttf": "./static/media/Bellota-Italic.4ce33b7ad17e2ed2ffc8.ttf",
+    "static/media/Bellota-LightItalic.ttf": "./static/media/Bellota-LightItalic.06164ecb83fb9d353481.ttf",
+    "static/media/Bellota-Regular.ttf": "./static/media/Bellota-Regular.0995721dbfd2744d342d.ttf",
+    "static/media/Bellota-Light.ttf": "./static/media/Bellota-Light.b40c52e043c6ac09e794.ttf",
+    "static/media/Bellota-BoldItalic.woff": "./static/media/Bellota-BoldItalic.7b6ceb5a9fd2ea0179c8.woff",
+    "static/media/Bellota-LightItalic.woff": "./static/media/Bellota-LightItalic.4d3862becef8caf06293.woff",
+    "static/media/Bellota-Italic.woff": "./static/media/Bellota-Italic.f58dd283dc05bbaa666d.woff",
+    "static/media/Bellota-Bold.woff": "./static/media/Bellota-Bold.30ed45f94d3bc4d4f444.woff",
+    "static/media/Bellota-Regular.woff": "./static/media/Bellota-Regular.1ef3b8b2c088e18b9787.woff",
+    "static/media/Bellota-Light.woff": "./static/media/Bellota-Light.d2dcbaf958eae70b1900.woff",
+    "static/media/kodimon.png": "./static/media/kodimon.7c0bed2da3b0eb99eee7.png",
+    "static/media/kodi-logo.svg": "./static/media/kodi-logo.2b85d52aed154995c4e7aae0e0691c2d.svg",
+    "index.html": "./index.html",
+    "static/media/arrow.svg": "./static/media/arrow.924776536ca5bf7cdfa889df44c2c07a.svg",
+    "main.046596f4.css.map": "./static/css/main.046596f4.css.map",
+    "main.1d505345.js.map": "./static/js/main.1d505345.js.map"
   },
   "entrypoints": [
-    "static/css/main.30563dfe.css",
-    "static/js/main.0df9b2b0.js"
+    "static/css/main.046596f4.css",
+    "static/js/main.1d505345.js"
   ]
 }
