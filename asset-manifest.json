@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.046596f4.css",
-    "main.js": "./static/js/main.3f3b7e0c.js",
+    "main.js": "./static/js/main.76351a1a.js",
     "static/media/Bellota-BoldItalic.ttf": "./static/media/Bellota-BoldItalic.3b1d663c2d37d57fc0b7.ttf",
     "static/media/Bellota-Bold.ttf": "./static/media/Bellota-Bold.20f57b5d61d9c97dd34e.ttf",
     "static/media/Bellota-Italic.ttf": "./static/media/Bellota-Italic.4ce33b7ad17e2ed2ffc8.ttf",
@@ -19,10 +19,10 @@
     "index.html": "./index.html",
     "static/media/arrow.svg": "./static/media/arrow.924776536ca5bf7cdfa889df44c2c07a.svg",
     "main.046596f4.css.map": "./static/css/main.046596f4.css.map",
-    "main.3f3b7e0c.js.map": "./static/js/main.3f3b7e0c.js.map"
+    "main.76351a1a.js.map": "./static/js/main.76351a1a.js.map"
   },
   "entrypoints": [
     "static/css/main.046596f4.css",
-    "static/js/main.3f3b7e0c.js"
+    "static/js/main.76351a1a.js"
   ]
 }
