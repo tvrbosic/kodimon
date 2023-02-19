@@ -182,7 +182,7 @@ export default function Game() {
     <Center height="100%" flexDirection="column">
       {renderScreen ? (
         <VStack width="100%" pt="4">
-          <Flex width="100%" mb={{ lg: 4, xl: 8, '2xl': 10 }}>
+          <Flex width="100%" mb={{ base: 8, '2xl': 10 }}>
             <Box width="20%">
               <AttackStatus statusText={leftAttackStatus} justifyContent="end" />
               <Pokemon pokemonData={battlingPokemon[0]} />

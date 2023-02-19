@@ -12,7 +12,7 @@ function Layout() {
   console.log(infoMessage);
 
   return (
-    <Box height="100vh" px="20" py="5" fontSize={{ lg: 14, xl: 16, '2xl': 18 }} overflow="hidden">
+    <Box height="100vh" px="20" py="5" fontSize={{ base: 16, '2xl': 18 }} overflow="hidden">
       <Outlet />
       <InfoModal isOpen={modalIsOpen} onClose={onClose} message={infoMessage!}></InfoModal>
     </Box>
