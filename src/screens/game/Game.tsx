@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Center, VStack, Flex, Box, Spacer, Spinner } from '@chakra-ui/react';
 
@@ -37,9 +37,13 @@ export default function Game() {
   const [leftAttackStatus, setLeftAttackStatus] = useState<null | string>(null);
   const [rightAttackStatus, setRightAttackStatus] = useState<null | string>(null);
   const [gameFinished, setGameFinished] = useState<boolean>(false);
-  const { isLoading, data, isError, error, sendBatchRequest } = useFetchBatchData<IPokemon>();
+  const { isLoading, data, isError, sendBatchRequest } = useFetchBatchData<IPokemon>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  // Following ref's are used as key props on image animation component
+  // Changing ref (key) is used to trigger animation on Pokemon attack
+  const leftPokemonImageRef = useRef(0);
+  const rightPokemonImageRef = useRef(0);
 
   // On initial component mount get two random pokemon URL's and fetch that data
   useEffect(() => {
@@ -117,6 +121,8 @@ export default function Game() {
 
   // Reset Game component local state required to start new game from AppMenu
   const resetGameComponentState = () => {
+    leftPokemonImageRef.current = 0;
+    rightPokemonImageRef.current = 0;
     setGameFinished(false);
     setLeftAttackStatus(null);
     setRightAttackStatus(null);
@@ -128,9 +134,13 @@ export default function Game() {
     if (activePokemon === 0) {
       attackingPokemon = 0;
       defendingPokemon = 1;
+      // Change ref to trigger attack animation
+      leftPokemonImageRef.current++;
     } else {
       attackingPokemon = 1;
       defendingPokemon = 0;
+      // Change ref to trigger attack animation
+      rightPokemonImageRef.current++;
     }
     // Reset attack statuses
     setLeftAttackStatus(null);
@@ -184,7 +194,11 @@ export default function Game() {
           <Flex width="100%" mb={{ base: 8, '2xl': 10 }}>
             <Box width="20%">
               <AttackStatus statusText={leftAttackStatus} justifyContent="end" />
-              <Pokemon pokemonData={battlingPokemon[0]} />
+              <Pokemon
+                pokemonData={battlingPokemon[0]}
+                imgKeyRef={leftPokemonImageRef.current}
+                animationAttackDirection="right"
+              />
             </Box>
             <Spacer />
             <Box width="15%">
@@ -197,7 +211,11 @@ export default function Game() {
             <Spacer />
             <Box width="20%">
               <AttackStatus statusText={rightAttackStatus} justifyContent="start" />
-              <Pokemon pokemonData={battlingPokemon[1]} />
+              <Pokemon
+                pokemonData={battlingPokemon[1]}
+                imgKeyRef={rightPokemonImageRef.current}
+                animationAttackDirection="left"
+              />
             </Box>
           </Flex>
 

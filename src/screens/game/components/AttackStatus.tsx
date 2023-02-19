@@ -8,8 +8,7 @@ interface IAttackStatusProps {
 
 // Create element with chakra factory function that will accept framer motion props
 const StatusTextAnimation = chakra(motion.div, {
-  // Allow motion props and non-Chakra props to be forwarded
-  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop), // Allow motion props and non-Chakra props to be forwarded
 });
 
 export default function AttackStatus({ statusText, justifyContent }: IAttackStatusProps) {
