@@ -11,7 +11,7 @@ function Layout() {
   const modalIsOpen = infoMessage ? true : false;
 
   return (
-    <Box height="100vh" px={{ base: 20, '2xl': 60 }} py="5" fontSize={{ base: 16, '2xl': 18 }}>
+    <Box height="100vh" px={{ base: 20, '2xl': 36 }} py="5" fontSize={{ base: 16, '2xl': 18 }}>
       <Outlet />
       <InfoModal isOpen={modalIsOpen} onClose={onClose} message={infoMessage!}></InfoModal>
     </Box>

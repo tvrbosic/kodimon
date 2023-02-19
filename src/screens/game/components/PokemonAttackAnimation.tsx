@@ -20,8 +20,8 @@ const PokemonAttackAnimation = ({
 }: IPokemonAttackAnimation) => {
   const configureTranslateX =
     animationAttackDirection === 'right'
-      ? ['0vw', '32vw', '64vw', '64vw', '32vw', '0vw']
-      : ['0vw', '-32vw', '-64vw', '-64vw', '-32vw', '0vw'];
+      ? ['0vw', '32vw', '62vw', '62vw', '32vw', '0vw']
+      : ['0vw', '-32vw', '-62vw', '-62vw', '-32vw', '0vw'];
   return (
     <AnimateAttack
       key={imgKeyRef}
