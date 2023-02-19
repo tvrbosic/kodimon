@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kodimon/static/css/main.30563dfe.css",
-    "main.js": "/kodimon/static/js/main.76b6ef7d.js",
+    "main.js": "/kodimon/static/js/main.0df9b2b0.js",
     "static/media/Bellota-BoldItalic.ttf": "/kodimon/static/media/Bellota-BoldItalic.3b1d663c2d37d57fc0b7.ttf",
     "static/media/Bellota-Bold.ttf": "/kodimon/static/media/Bellota-Bold.20f57b5d61d9c97dd34e.ttf",
     "static/media/Bellota-Italic.ttf": "/kodimon/static/media/Bellota-Italic.4ce33b7ad17e2ed2ffc8.ttf",
@@ -19,10 +19,10 @@
     "index.html": "/kodimon/index.html",
     "static/media/arrow.svg": "/kodimon/static/media/arrow.924776536ca5bf7cdfa889df44c2c07a.svg",
     "main.30563dfe.css.map": "/kodimon/static/css/main.30563dfe.css.map",
-    "main.76b6ef7d.js.map": "/kodimon/static/js/main.76b6ef7d.js.map"
+    "main.0df9b2b0.js.map": "/kodimon/static/js/main.0df9b2b0.js.map"
   },
   "entrypoints": [
     "static/css/main.30563dfe.css",
-    "static/js/main.76b6ef7d.js"
+    "static/js/main.0df9b2b0.js"
   ]
 }
