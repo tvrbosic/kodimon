@@ -7,7 +7,7 @@ import {
   IPokemon,
   IProcessAttackDamage,
   TBattleStatus,
-} from '../../ts/definitions';
+} from '../ts/definitions';
 
 // Define the initial state using IGameState
 const initialState: IGameState = {

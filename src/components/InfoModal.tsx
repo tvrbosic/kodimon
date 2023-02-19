@@ -1,9 +1,9 @@
 import { Modal as CModal, ModalOverlay, ModalContent, Text } from '@chakra-ui/react';
 
 import { useAppDispatch } from '../state/hooks';
-import { clearInfoMessage } from '../screens/game/gameSlice';
-import ThemeContainer from './ThemeContainer';
+import { clearInfoMessage } from '../state/gameSlice';
 
+import ThemeContainer from './ThemeContainer';
 import Button from './Button';
 
 interface IModalProps {

@@ -2,24 +2,23 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Center, VStack, Flex, Box, Spacer, Spinner } from '@chakra-ui/react';
 
-import { useFetchBatchData } from '../../hooks/useFetchBatchData';
-import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { IPokemon, TBattlingPokemonIndex } from '../../ts/definitions';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import {
-  randomInteger,
-  randomNumber,
-  capitalize,
-  roundToTwoDecimalPlaces,
-} from '../../utils/utility';
-import {
-  setBattlingPokemonUrls,
   setBattlingPokemons,
   switchActivePokemon,
   processAttackDamage,
   addLogEntry,
   setInfoMessage,
   resetGameState,
-} from './gameSlice';
+} from '../../state/gameSlice';
+import { useFetchBatchData } from '../../hooks/useFetchBatchData';
+import {
+  randomInteger,
+  randomNumber,
+  capitalize,
+  roundToTwoDecimalPlaces,
+} from '../../utils/utility';
 
 import AttackStatus from './components/AttackStatus';
 import Pokemon from './components/Pokemon';

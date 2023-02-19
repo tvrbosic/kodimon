@@ -2,16 +2,10 @@ import { Center } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useFetchData } from '../../hooks/useFetchData';
-import { useAppDispatch, useAppSelector } from '../../state/hooks';
-import {
-  setPokemonDataUrls,
-  setBattlingPokemonUrls,
-  setBattleStatus,
-  resetGameState,
-} from '../game/gameSlice';
 import { IPokemonUrls } from '../../ts/definitions';
-import { randomInteger } from '../../utils/utility';
+import { useAppDispatch } from '../../state/hooks';
+import { setPokemonDataUrls, setBattleStatus, resetGameState } from '../../state/gameSlice';
+import { useFetchData } from '../../hooks/useFetchData';
 
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
@@ -21,7 +15,7 @@ const pokemonSpeciesCount = process.env.REACT_APP_POKEMON_COUNT;
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, data, isError, error, sendRequest } = useFetchData<IPokemonUrls>();
+  const { isLoading, data, isError, sendRequest } = useFetchData<IPokemonUrls>();
 
   // Initial data fetch
   useEffect(() => {

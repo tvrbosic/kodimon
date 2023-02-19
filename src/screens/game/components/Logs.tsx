@@ -1,8 +1,8 @@
-import { Flex, Box } from '@chakra-ui/react';
+import { Flex, Box, Text } from '@chakra-ui/react';
 
-import { Text } from '@chakra-ui/react';
-import ThemeContainer from '../../../components/ThemeContainer';
 import { useAppSelector } from '../../../state/hooks';
+
+import ThemeContainer from '../../../components/ThemeContainer';
 
 export default function Logs() {
   const logEntries = useAppSelector((state) => state.game.log);

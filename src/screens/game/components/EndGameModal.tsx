@@ -1,8 +1,9 @@
 import { Modal as CModal, ModalOverlay, ModalContent, Text, Spacer } from '@chakra-ui/react';
 
-import { capitalize } from '../../../utils/utility';
-import AppMenu from '../../../components/AppMenu';
 import { useAppSelector } from '../../../state/hooks';
+import { capitalize } from '../../../utils/utility';
+
+import AppMenu from '../../../components/AppMenu';
 
 interface IModalProps {
   isOpen: boolean;

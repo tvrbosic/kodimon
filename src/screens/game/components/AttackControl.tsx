@@ -1,8 +1,8 @@
 import { Flex, Image } from '@chakra-ui/react';
 
 import { TBattlingPokemonIndex } from '../../../ts/definitions';
-
 import Arrow from '../../../assets/images/arrow.svg';
+
 import Button from '../../../components/Button';
 
 interface IAttackControl {

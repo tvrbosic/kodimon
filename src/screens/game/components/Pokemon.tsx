@@ -3,7 +3,7 @@ import { Box, Flex, Text, Image } from '@chakra-ui/react';
 
 import { IPokemon } from '../../../ts/definitions';
 import { useAppDispatch } from '../../../state/hooks';
-import { setBattleStatus } from '../gameSlice';
+import { setBattleStatus } from '../../../state/gameSlice';
 import { capitalize } from '../../../utils/utility';
 
 import HpBar from './HpBar';

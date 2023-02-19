@@ -7,8 +7,9 @@ import {
   resetGameState,
   resetForNewOpponent,
   setInfoMessage,
-} from '../screens/game/gameSlice';
+} from '../state/gameSlice';
 import { randomInteger } from '../utils/utility';
+
 import ThemeContainer from './ThemeContainer';
 import Button from './Button';
 
