@@ -4,7 +4,7 @@ Simple Pokemon Battling Game which uses [PokeApi](https://pokeapi.co/docs/v2) as
 
 Application is deployed with GitHub pages and can be tested following link: [Kodimon](https://tvrbosic.github.io/kodimon/)
 
-## Running locally (Linux)
+## Running locally
 
 1. Clone repository: `git clone git@github.com:tvrbosic/kodimon.git`
 2. Install npm packages: `cd kodimon && npm install`
