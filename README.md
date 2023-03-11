@@ -22,9 +22,14 @@ Application is deployed with GitHub pages and can be tested following link: [Kod
 ## Screenshots
 
 ![Kodimon 1](/src/assets/screenshots/Kodimon_1.png?raw=true 'Kodimon 1')
+---
 ![Kodimon 2](/src/assets/screenshots/Kodimon_2.png?raw=true 'Kodimon 2')
+---
 ![Kodimon 3](/src/assets/screenshots/Kodimon_3.png?raw=true 'Kodimon 3')
+---
 ![Kodimon 4](/src/assets/screenshots/Kodimon_4.png?raw=true 'Kodimon 4')
+---
 ![Kodimon 5](/src/assets/screenshots/Kodimon_5.png?raw=true 'Kodimon 5')
-![Kodimon 5](/src/assets/screenshots/Kodimon_6.png?raw=true 'Kodimon 5')
+---
+![Kodimon 6](/src/assets/screenshots/Kodimon_6.png?raw=true 'Kodimon 6')
 
